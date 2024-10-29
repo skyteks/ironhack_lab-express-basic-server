@@ -25,7 +25,7 @@ app.get("/api/articles", (request, response) => {
     response.json(articles);
 });
 
-app.get((request, response) => {
+app.get("*",(request, response) => {
     response.status(404).sendFile(__dirname + "/views/not-found.html");
 });
 
