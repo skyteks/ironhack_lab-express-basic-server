@@ -2,6 +2,8 @@
 const express = require("express");
 const logger = require("morgan");
 const app = express();
+const dotenv = require('dotenv').config();
+const port = process.env.PORT;
 
 app.use(logger("dev"));
 app.use(express.json());
@@ -20,14 +22,25 @@ app.get("/api/projects", (request, response) => {
     response.json(projects);
 });
 
+app.get("/api/projects/:id", (request, response) => {
+    const {id} = request.params;
+    const project = products.projects.find((proj) => proj.id === parseInt(id));
+    response.json(project);
+});
+
 const articles = require(__dirname + "/data/articles.json");
 app.get("/api/articles", (request, response) => {
     response.json(articles);
+});
+
+app.get("/api/articles/:id", (request, response) => {
+    const {id} = request.params;
+    const article = products.articles.find((articl) => articl.id === parseInt(id));
+    response.json(article);
 });
 
 app.get("*",(request, response) => {
     response.status(404).sendFile(__dirname + "/views/not-found.html");
 });
 
-const port = 5005;
 app.listen(port, () => console.log("Express Server running on " + port));
