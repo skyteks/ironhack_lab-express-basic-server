@@ -24,7 +24,7 @@ app.get("/api/projects", (request, response) => {
 
 app.get("/api/projects/:id", (request, response) => {
     const {id} = request.params;
-    const project = products.projects.find((proj) => proj.id === parseInt(id));
+    const project = projects.find((proj) => proj.id === parseInt(id));
     response.json(project);
 });
 
@@ -35,7 +35,7 @@ app.get("/api/articles", (request, response) => {
 
 app.get("/api/articles/:id", (request, response) => {
     const {id} = request.params;
-    const article = products.articles.find((articl) => articl.id === parseInt(id));
+    const article = articles.find((articl) => articl.id === parseInt(id));
     response.json(article);
 });
 
